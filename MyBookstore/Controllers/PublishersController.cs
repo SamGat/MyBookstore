@@ -95,7 +95,7 @@ namespace MyBookstore.Controllers
             using (SqlConnection con = new SqlConnection(Helper.GetCon()))
             {
                 con.Open();
-                string query = @"SELECT pubName WHERE pubID=@pubID";
+                string query = @"SELECT pubName FROM publishers WHERE pubID=@pubID";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("pubID", id);

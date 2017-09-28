@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th></th>
@@ -23,15 +20,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <a href="@Url.Action("Edit", "Publishers", new { id=item.ID })" class="btn btn-xs btn-default">
+                <i class='fa fa-edit'></i>
+            </a>
+            <a href="@Url.Action("Details", "Publishers", new { id=item.ID })" class="btn btn-xs btn-info">
+                <i class='fa fa-eye'></i>
+            </a>
+            <a href="@Url.Action("Delete", "Publishers", new { id=item.ID })" class="btn btn-xs btn-danger">
+                <i class='fa fa-trash'></i>
+            </a>
         </td>
     </tr>
 }
