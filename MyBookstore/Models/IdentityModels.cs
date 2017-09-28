@@ -33,5 +33,9 @@ namespace MyBookstore.Models
         public System.Data.Entity.DbSet<MyBookstore.Models.AuthorsModels> AuthorsModels { get; set; }
 
         public System.Data.Entity.DbSet<MyBookstore.Controllers.PublishersModels> PublishersModels { get; set; }
+
+        public System.Data.Entity.DbSet<MyBookstore.Models.TypesModels> TypesModels { get; set; }
+
+        public System.Data.Entity.DbSet<MyBookstore.Models.ExperimentModels> ExperimentModels { get; set; }
     }
 }
