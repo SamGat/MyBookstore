@@ -11,7 +11,7 @@ namespace MyBookstore.App_Code
     {
         public static string GetCon()
         {
-            return ConfigurationManager.ConnectionStrings["MyCon3"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["MyCon"].ConnectionString;
         }
     }
 }
