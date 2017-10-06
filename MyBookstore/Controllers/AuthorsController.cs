@@ -1,4 +1,6 @@
-﻿using MyBookstore.App_Code;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using MyBookstore.App_Code;
 using MyBookstore.Models;
 using System;
 using System.Collections.Generic;
@@ -206,16 +208,40 @@ namespace MyBookstore.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+
             try
             {
                 // TODO: Add delete logic here
-
+            
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+        }
+
+        public ActionResult GenerateReport()
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Server.MapPath("~/Reports/rptAuthors.rpt"));
+            rd.SetDatabaseLogon("GatuslaoSam", "Samuelruth1617%", "TAFT-CL313", "mybookstore");
+            rd.ExportToHttpResponse(ExportFormatType.PortableDocFormat, System.Web.HttpContext.Current.Response, true, "Authors Report");
+            return View();
+        }
+
+        public ActionResult GenerateIndividualReport(int? id)
+        {
+            if (id == null)
+                return RedirectToAction("Index");
+
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Server.MapPath("~/Reports/rptAuthorIndividual.rpt"));
+            rd.SetDatabaseLogon("GatuslaoSam", "Samuelruth1617%", "(local)", "mybookstore");
+            rd.SetParameterValue("authorID", id);
+            rd.SetParameterValue("Username", "Samuel Antonio C. Gatuslao");
+            rd.ExportToHttpResponse(ExportFormatType.PortableDocFormat, System.Web.HttpContext.Current.Response, true, "Author #" + id.ToString() + " Report");
+            return View();
         }
     }
 }

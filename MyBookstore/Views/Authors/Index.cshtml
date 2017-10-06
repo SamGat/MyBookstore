@@ -9,6 +9,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p>
+    <a href="@Url.Action("GenerateReport", "Authors")" class="btn btn-info"
+       onclick='return confirm("Generate report?");'>
+        <i class="fa fa-print"></i> Print
+    </a>
+</p>
 <table id="tblAuthors" class="table">
     <thead>
         <th>
@@ -59,9 +65,17 @@
             @Html.DisplayFor(modelItem => item.Zip)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <a href="@Url.Action("Edit", "Authors", new { id=item.ID })" class="btn btn-xs btn-default">
+                <i class='fa fa-edit'></i>
+            </a>
+            <a href="@Url.Action("GenerateIndividualReport", "Authors", new { id=item.ID })" class="btn btn-xs btn-default"
+               onclick='return confirm("Generate report?");'>
+                <i class='fa fa-print'></i>
+            </a>
+            <a href="@Url.Action("Delete", "Authors", new { id=item.ID })" class="btn btn-xs btn-danger"
+               onclick='return confirm("Delete?");'>
+                <i class='fa fa-trash'></i>
+            </a>
         </td>
     </tr>
 }
